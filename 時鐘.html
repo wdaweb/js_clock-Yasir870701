@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Orbitron:wght@900&display=swap");
+      body {
+        background: url(./images/未命名.jpg);
+        background-repeat: no-repeat;
+        /* background: black; */
+      }
+      #MyClockDisplay {
+        position: absolute;
+        font-size: 60px;
+        font-family: Orbitron;
+        color: white;
+        letter-spacing: 7px;
+        font-size: 50px;
+        top: 73%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+
+        text-shadow: 0.05em 0 0 #dadbdb, -0.025em -0.05em 0 #c71c1c,
+          0.025em 0.05em 0 #22d6d6;
+        text-shadow: 0.05em 0 0 #dadbdb, -0.025em -0.05em 0 #c71c1c,
+          0.025em 0.05em 0 #22d6d6;
+
+        animation: clock 500ms infinite;
+      }
+      #MyClockDisplay2 {
+        position: absolute;
+        font-size: 60px;
+        font-family: Orbitron;
+        letter-spacing: 7px;
+        font-size: 50px;
+        z-index: 1;
+        color: white;
+        clip-path: polygon(0 0, 100% 0, 100% 45%, 0 45%);
+        transform: translate(-0.05em, -0.025em);
+        opacity: 0.8;
+        top: 73%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+
+        text-shadow: 0.05em 0 0 #dadbdb, -0.025em -0.05em 0 #c71c1c,
+          0.025em 0.05em 0 #22d6d6;
+        text-shadow: 0.05em 0 0 #dadbdb, -0.025em -0.05em 0 #c71c1c,
+          0.025em 0.05em 0 #22d6d6;
+
+        animation: clock 650ms infinite;
+      }
+      #MyClockDisplay3 {
+        position: absolute;
+        font-size: 60px;
+        font-family: Orbitron;
+        letter-spacing: 7px;
+        font-size: 50px;
+        z-index: 1;
+        color: white;
+        clip-path: polygon(0 60%, 100% 60%, 100% 100%, 0 100%);
+        transform: translate(0.05em, 0.025em);
+        opacity: 0.8;
+        top: 73%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+
+        text-shadow: 0.05em 0 0 #dadbdb, -0.025em -0.05em 0 #c71c1c,
+          0.025em 0.05em 0 #22d6d6;
+        text-shadow: 0.05em 0 0 #dadbdb, -0.025em -0.05em 0 #c71c1c,
+          0.025em 0.05em 0 #22d6d6;
+
+        animation: clock 375ms infinite;
+      }
+
+      @keyframes clock {
+        0% {
+          text-shadow: 0.05em 0 0 #dadbdb, -0.05em -0.025em 0 #c71c1c,
+            -0.025em 0.05em 0 #22d6d6;
+        }
+        14% {
+          text-shadow: 0.05em 0 0 #dadbdb, -0.05em -0.025em 0 #c71c1c,
+            -0.025em 0.05em 0 #22d6d6;
+        }
+        25% {
+          text-shadow: -0.05em 0 0 #dadbdb, 0.025em 0.025em 0 #c71c1c,
+            -0.05em -0.05em 0 #22d6d6;
+        }
+        49% {
+          text-shadow: -0.05em 0 0 #dadbdb, 0.025em 0.025em 0 #c71c1c,
+            -0.05em -0.05em 0 #22d6d6;
+        }
+        50% {
+          text-shadow: 0.025em 0.05em 0 #dadbdb, 0.05em -0.05em 0 #c71c1c,
+            0 -0.05em 0 #22d6d6;
+        }
+        99% {
+          text-shadow: 0.025em 0.05em 0 #dadbdb, 0.05em -0.05em 0 #c71c1c,
+            0 -0.05em 0 #22d6d6;
+        }
+        100% {
+          text-shadow: -0.025em 0 0 #dadbdb, -0.025em -0.025em 0 #c71c1c,
+            -0.025em -0.05em 0 #22d6d6;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <audio src="./murder-in-my-mind.mp3" autoplay></audio>
+    <main>
+      <div id="MyClockDisplay" class="clock" onload="showTime()"></div>
+      <div id="MyClockDisplay2" class="clock" onload="showTime2()"></div>
+      <div id="MyClockDisplay3" class="clock" onload="showTime3()"></div>
+    </main>
+  </body>
+  <script>
+    function showTime() {
+      var date = new Date();
+      var h = date.getHours(); // 0 - 23
+      var m = date.getMinutes(); // 0 - 59
+      var s = date.getSeconds(); // 0 - 59
+      var session = "AM";
+
+      if (h == 0) {
+        h = 12;
+      }
+
+      if (h > 12) {
+        h = h - 12;
+        session = "PM";
+      }
+
+      h = h < 10 ? "0" + h : h;
+      m = m < 10 ? "0" + m : m;
+      s = s < 10 ? "0" + s : s;
+
+      var time = h + ":" + m + ":" + s + " " + session;
+      document.getElementById("MyClockDisplay").innerText = "Time " + time;
+      document.getElementById("MyClockDisplay").textContent = "Time " + time;
+
+      setTimeout(showTime, 1000);
+    }
+
+    showTime();
+  </script>
+
+  <script>
+    function showTime2() {
+      var date = new Date();
+      var h = date.getHours(); // 0 - 23
+      var m = date.getMinutes(); // 0 - 59
+      var s = date.getSeconds(); // 0 - 59
+      var session = "AM";
+
+      if (h == 0) {
+        h = 12;
+      }
+
+      if (h > 12) {
+        h = h - 12;
+        session = "PM";
+      }
+
+      h = h < 10 ? "0" + h : h;
+      m = m < 10 ? "0" + m : m;
+      s = s < 10 ? "0" + s : s;
+
+      var time = h + ":" + m + ":" + s + " " + session;
+      document.getElementById("MyClockDisplay2").innerText = "Time " + time;
+      document.getElementById("MyClockDisplay2").textContent = "Time " + time;
+
+      setTimeout(showTime2, 1000);
+    }
+
+    showTime2();
+  </script>
+  <script>
+    function showTime3() {
+      var date = new Date();
+      var h = date.getHours(); // 0 - 23
+      var m = date.getMinutes(); // 0 - 59
+      var s = date.getSeconds(); // 0 - 59
+      var session = "AM";
+
+      if (h == 0) {
+        h = 12;
+      }
+
+      if (h > 12) {
+        h = h - 12;
+        session = "PM";
+      }
+
+      h = h < 10 ? "0" + h : h;
+      m = m < 10 ? "0" + m : m;
+      s = s < 10 ? "0" + s : s;
+
+      var time = h + ":" + m + ":" + s + " " + session;
+      document.getElementById("MyClockDisplay3").innerText = "Time " + time;
+      document.getElementById("MyClockDisplay3").textContent = "Time " + time;
+
+      setTimeout(showTime3, 1000);
+    }
+
+    showTime3();
+  </script>
+  <script>
+    (function () {
+      "use strict";
+      var c = document.getElementById("c");
+      var ctx = c.getContext("2d");
+      var w = (c.width = window.innerWidth);
+      var h = (c.height = window.innerHeight);
+      var cx = w / 2;
+      var cy = h / 2;
+      var mx = null,
+        my = null;
+      var points = [];
+      var max = 400;
+      var fl = {
+        x: cx,
+        y: cy,
+        vx: 0,
+        vy: 0,
+      };
+
+      function Point(x, y) {
+        this.x = x;
+        this.y = y;
+        this.ox = x;
+        this.oy = y;
+        this.maxk = Math.random() * 4;
+        this.mink = this.maxk / 2;
+      }
+
+      Point.prototype = {
+        constructor: Point,
+        update: function () {
+          this.x = this.ox + (Math.random() * this.maxk - this.mink);
+          this.y = this.oy + (Math.random() * this.maxk - this.mink);
+        },
+      };
+
+      c.addEventListener("mousemove", function (e) {
+        var r = c.getBoundingClientRect();
+        mx = e.clientX - r.left;
+        my = e.clientY - r.top;
+        // points.push(new Point(mx, my));
+        // if(points.length > max) {
+        //   points.shift();
+        // }
+      });
+
+      function draw(color, size, points) {
+        ctx.strokeStyle = color;
+        ctx.lineWidth = size;
+        ctx.beginPath();
+        for (var i = 0, len = points.length; i < len; i++) {
+          var p = points[i];
+          if (i === 0) {
+            ctx.moveTo(p.x, p.y);
+          } else {
+            ctx.lineTo(p.x, p.y);
+          }
+        }
+        ctx.stroke();
+      }
+
+      var color = Math.random() * 360;
+      var color2 = Math.random() * 360;
+      requestAnimationFrame(function loop() {
+        requestAnimationFrame(loop);
+
+        ctx.globalCompositeOperation = "lighter";
+        ctx.clearRect(0, 0, w, h);
+
+        if (mx === null || mx === null) {
+          fl.vx += Math.random() * 4 - 2;
+          fl.vy += Math.random() * 4 - 2;
+          fl.x += fl.vx;
+          fl.y += fl.vy;
+          if (Math.abs(fl.vx) > 10 || Math.abs(fl.vy) > 10) {
+            fl.vx = 0;
+            fl.vy = 0;
+          }
+          if (fl.x > w) {
+            fl.x = w;
+            fl.vx *= -1;
+          }
+          if (fl.x < 0) {
+            fl.x = 0;
+            fl.vx *= -1;
+          }
+          if (fl.y > h) {
+            fl.y = h;
+            fl.vy *= -1;
+          }
+          if (fl.y < 0) {
+            fl.y = 0;
+            fl.vy *= -1;
+          }
+
+          points.push(new Point(fl.x, fl.y));
+          if (points.length > max) {
+            points.shift();
+          }
+        } else {
+          fl.x += (mx - fl.x) * 0.1;
+          fl.y += (my - fl.y) * 0.4;
+          points.push(new Point(fl.x, fl.y));
+          if (points.length > max) {
+            points.shift();
+          }
+        }
+
+        for (var i = 0, len = points.length; i < len; i++) {
+          var p = points[i];
+          p.update();
+        }
+
+        color += 1;
+        color2 += 1;
+
+        draw("hsla(" + color + ",100%, 50%, 1)", 4, points);
+        draw("hsla(" + color2 + ",100%, 50%, 1)", 2, points);
+      });
+    })();
+  </script>
+</html>
